@@ -52,3 +52,70 @@ swap = Virtual Memory
 	/dev/sda2 - none - swap - defaults,pri=-2 0 0 | swap
 
 ##### Basic configurations to ArchLinux #####
+
+5) Wi-fi:
+	$ pacman -S wpa-supplicant networkmanager net-tools
+	
+	# Active #
+	$ systemctl enable NetworkManager
+
+	# config #
+	$ ifconfig -a
+	$ ifconfig [interface] up (to active)
+
+5.1) Using notebook:
+	$ pacman -S xf86-input-synaptics
+
+5.2) Audio:
+	$ pacman -S pavucontrol alsa-firmware alsa-utils alsa-plugins pulseaudio-alsa pulseaudio
+
+##### Install interface|Xorg #####
+
+6) Install Xorg:
+	$ pacman -S xorg-server xorg-xinit xorg-apps gvfs-mtp sshfs
+
+6.1) Check VGA:
+	$ lspci | grep VGA
+
+6.2) for intel:
+	$ pacman -S xf86-video-intel
+
+6.3) Ambient XFCE:
+	$ sudo pacman -S xfce4 xfce4-goodies
+
+6.4) LightDM good:
+	$ pacman -S lightdm lightdm-gtk-greeter
+	
+	# GTK Greeter Settings #
+	$ pacman -S lightdm-gtk-greeter-settings
+
+	# Enable #
+	$ systemctl enable lightdm
+	reboot
+
+6.5) Users folders:
+	$ pacman -S xdg-user-dirs
+	$ xdg-user-dirs
+
+6.6) Keyboard:
+	$ locatectl set-x11-keymap br abnt2
+
+6.7) Network Manager icon:
+	$ pacman -S network-manager-applet
+	$ reboot
+
+##### End #####
+
+7) Add new user:
+	$ useradd -m -g users -G wheel,storage,power -s /bin/bash [name]
+
+	# Change password user #
+	$ passwd [name]
+
+	# Change the file sudoers #
+	nano /etc/sudoers
+	
+	# Uncomment line #
+	  #%Wheel ALL=(ALL) ALL
+
+###############################
