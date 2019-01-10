@@ -1,0 +1,54 @@
+##### How to install Arch-Linux from 0 #####
+
+1) Check connection:
+	$ ping google.com
+
+2.1) Load keyboard:
+	$ loadkeys br-abnt2
+
+##### Disk /root /home /swap #####
+
+swap = Virtual Memory
+
+3) Check partition's:
+	$ fdisk -l (Show disk)
+
+3.1) Create partition:
+	$ cfdisk | DOS type |
+ a) /root = 10GB | /dev/sda1 <- Primary && bootable
+ b) /swap = 2GB  | /dev/sda2 <- Primary
+ c) /home = Rest | /dev/sda5 <- Extended (Logic)
+
+3.2) Format partition:
+	$ mkfs.ext4 /dev/sda1 | root
+	$ mkfs.ext4 /dev/sda5 | home
+	
+	$ mkswap /dev/sda2 | swap 
+	$ swapon /dev/sda2 | swap
+
+3.3) Mount partition's:
+	$ mount /dev/sda1 /mnt | root
+	
+	# Creater && Mount Home #
+	
+	$ mkdir /mnt/home
+	$ mount /dev/sda5 /mnt/home
+
+##### Install Arch-Linux (Check internet connection ####
+
+4) Install the system:
+	$ pacstrap /mnt base base-devel | Install root | Wait until end
+
+4.1) Create initializer root:
+	$ genfstab /mnt >> /mnt/etc/fstab
+	
+	# Check #
+	cat /mnt/etc/fstab
+	
+	# information from cat #
+	/dev/sda1 / ext4 - rw,relatime 0 1 | root first
+	/dev/sda5 /home ext4 - rw.relatime 0 2 | home second
+	
+	/dev/sda2 - none - swap - defaults,pri=-2 0 0 | swap
+
+##### Basic configurations to ArchLinux #####
