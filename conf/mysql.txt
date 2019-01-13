@@ -1,3 +1,5 @@
+# MySql from AUR repo. && not MariaDB
+
 #After install MySql with AUR.
 $ sudo mysqld --initialize --user=mysql --basedir=/usr 
 --datadir=/var/lib/mysql
