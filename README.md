@@ -1,2 +1,2 @@
 # Arch-install
-How to install ArchLinux from 0
+How to install ArchLinux from 0 and Configure

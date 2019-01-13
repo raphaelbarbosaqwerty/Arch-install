@@ -1,0 +1,22 @@
+#After install MySql with AUR.
+$ sudo mysqld --initialize --user=mysql --basedir=/usr 
+--datadir=/var/lib/mysql
+
+#If returns an error, so delete the directory
+$ sudo rm -rvf /var/lib/mysql
+
+#Run again
+$ sudo mysqld --initialize --user=mysql --basedir=/usr 
+--datadir=/var/lib/mysql
+
+#Now change the temporaly password with.
+$ mysql_secure_installation
+
+#Start your MySql
+$ sudo systemctl start mysqld.service
+
+#MySql is running check with
+$ netstat -tlpn
+
+#Refferences
+https://bbs.archlinux.org/viewtopic.php?id=239865
