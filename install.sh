@@ -56,13 +56,13 @@ echo "Language"
 echo "Uncomment the line of your language"
 	nano /etc/locale.gen
 	locale-gen
-echo "choose your language inside this file EX: LANG=pt_BR.UTF-8"
-	sleep 3
+echo "choose your language inside this file EX: LANG=pt_BR.UTF-8. [If you understand press Enter]"
+	read
 	nano /etc/locale.conf
 clear
 
 # Time #
-echo "Time"
+echo "Time and date, waiting.."
 	rm  /etc/localtime
 	ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 	hwclock --systohc --utc
@@ -70,8 +70,8 @@ clear
 
 # Connection #
 echo "Config connection"
-echo "Choose the name of your host"
-	sleep 2
+echo "Choose the name of your host. [If you understand press Enter]"
+	read
 	nano /etc/hostname
 	nano /etc/hosts
 	echo "loading.."
@@ -121,15 +121,12 @@ echo "Graphic setup waiting.."
 	if (($cardboard == 0))
 		then
 			pacman -S xf86-video-amdgpu
-				
 				elif (($cardboard == 1))
 				then
 					pacman -S xf86-video-intel
-				
 				elif (($cardboard == 2))
 				then
 					pacman -S xf86-video-nouveau
-				
 				elif (($cardboard == 3))
 				then	
 					pacman -S xf86-video-fbdev virtualbox-guest-utils virtualbox-guest-modules-arch
@@ -159,15 +156,12 @@ echo "Graphical ambient setup waiting.."
 	if (($grabient == 0)) #GNOME
 		then
 			pacman -S gnome gnome-extra
-				
 				elif (($grabient == 1)) #XFCE4 <3
 				then	
 					pacman -S xfce4 xfce4-goodies
-				
 				elif (($grabient == 2)) #KDE
 				then	
 					pacman -S plasma
-				
 				elif (($grabient == 3)) #MATE
 				then	
 					pacman -S mate mate-extra
@@ -189,12 +183,11 @@ if (($disp == 0)) #GDM
 				pacman -S light-gtk-greeter-settings
 				systemctl enable lightdm
 			elif (($disp == 2)) #SDDM
-			then	
+			then
 				pacman -S sddm
 				systemctl enable sddm
-
 			elif (($disp == 3)) #LXDM
-			then	
+			then
 				pacman -S lxdm
 				systemctl enable lxdm
 	else
