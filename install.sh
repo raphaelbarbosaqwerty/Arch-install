@@ -207,14 +207,16 @@ echo "New normal user name?"
 	echo "New user password?"
 	passwd $name
 	clear
-	echo "Edit file, uncoment line #%wheel all=(all)all, wait.."
-	sleep 1
+	echo "Edit file, uncoment line #%wheel all=(all)all, wait.. [If you understand press Enter]"
+	read
 	nano /etc/sudoers
 	clear
 
 # Rebooting #
-echo "System i'll going reboot, remove the media drive, when the computer is rebooting."
-	exit
-	umount /mnt/home
-	umount /mnt
-reboot
+echo "Now you need to reboot the computer and remove the drive media."
+	echo "use this commands when the script end:"
+	echo "exit"
+	echo "umount /mnt/home"
+	echo "umount /mnt"
+	echo "reboot"
+exit
