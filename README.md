@@ -11,5 +11,5 @@ I maked this script for test, if u got some error, please report. Alpha script, 
 
 # Working! #
 Script tested and works great!  
-XFCE4: Works
-KDE: Works
+XFCE4: Works  
+KDE: Works  
