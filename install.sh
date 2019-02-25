@@ -5,6 +5,10 @@
 #       Version: 1.0                 #
 ######################################
 
+# Arrumar #
+#Tempo para ler os arquivos e falar o que tem que fazer.
+#Seleção do wi-fi para notebook ou computador ON/OFF.
+
 # Start # 
 echo "1) Check your internet conection first!"
 echo "2) Just start this script after arch-chroot"
@@ -117,11 +121,17 @@ echo "Graphic setup waiting.."
 	if (($cardboard == 0))
 		then
 			pacman -S xf86-video-amdgpu
+				
 				elif (($cardboard == 1))
+				then
 					pacman -S xf86-video-intel
+				
 				elif (($cardboard == 2))
+				then
 					pacman -S xf86-video-nouveau
+				
 				elif (($cardboard == 3))
+				then	
 					pacman -S xf86-video-fbdev virtualbox-guest-utils virtualbox-guest-modules-arch
 				else
 					echo "Error"
@@ -149,11 +159,17 @@ echo "Graphical ambient setup waiting.."
 	if (($grabient == 0)) #GNOME
 		then
 			pacman -S gnome gnome-extra
+				
 				elif (($grabient == 1)) #XFCE4 <3
+				then	
 					pacman -S xfce4 xfce4-goodies
+				
 				elif (($grabient == 2)) #KDE
+				then	
 					pacman -S plasma
+				
 				elif (($grabient == 3)) #MATE
+				then	
 					pacman -S mate mate-extra
 		else
 			echo "Error"
@@ -168,14 +184,17 @@ if (($disp == 0)) #GDM
 		pacman -S gdm
 		systemctl enable gdm
 			elif (($disp == 1)) #LIGHTDM
+			then	
 				pacman -S lightdm lightdm-gtk-greeter
 				pacman -S light-gtk-greeter-settings
 				systemctl enable lightdm
 			elif (($disp == 2)) #SDDM
+			then	
 				pacman -S sddm
 				systemctl enable sddm
 
 			elif (($disp == 3)) #LXDM
+			then	
 				pacman -S lxdm
 				systemctl enable lxdm
 	else
