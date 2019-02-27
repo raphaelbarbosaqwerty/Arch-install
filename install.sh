@@ -5,10 +5,6 @@
 #       Version: 1.0                 #
 ######################################
 
-# Arrumar #
-#Tempo para ler os arquivos e falar o que tem que fazer.
-#Seleção do wi-fi para notebook ou computador ON/OFF.
-
 # Start # 
 echo "1) Check your internet conection first!"
 echo "2) Just start this script after arch-chroot"
