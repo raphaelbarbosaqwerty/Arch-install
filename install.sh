@@ -2,7 +2,7 @@
 
 ######################################
 # Automatized script to install Arch #
-#       Version: 1.0                 #
+#       Version: 1.0.1               #
 ######################################
 
 # Start # 
@@ -10,6 +10,16 @@ echo "1) Check your internet conection first!"
 echo "2) Just start this script after arch-chroot"
 	sleep 2
 clear
+
+echo "Starting with the installationg becareful with all commands you choose..."
+	sleep 2
+
+echo "Config Hostname and hosts"
+
+echo "Hostname?"
+	read hostname
+echo "Hosts?
+	read hosts
 
 echo "Config settings for your computer?"
 	echo "Intel = 1"
@@ -68,11 +78,11 @@ clear
 echo "Config connection"
 echo "Choose the name of your host. [If you understand press Enter]"
 	read
-	nano /etc/hostname
-	nano /etc/hosts
+	echo "$hostname" > /etc/hostname
+	echo "$hosts" > /etc/hosts
 	echo "loading.."
 	sleep 2
-	pacman -S dhcpcd
+	pacman -S dhcpcd --noconfirm
 	systemctl enable dhcpcd
 clear
 
@@ -80,9 +90,9 @@ clear
 echo "Grub config"
 	if (($intamd == 1))
 		then
-			pacman -S grub os-prober intel-ucode
+			pacman -S grub os-prober intel-ucode --noconfirm
 		else
-			pacman -S grub os-prober
+			pacman -S grub os-prober --noconfirm
 	fi
 	sleep 2
 clear
@@ -94,19 +104,19 @@ clear
 
 # Config computer specs #
 echo "Installing Wi-fi"
-	pacman -S networkmanager net-tools
+	pacman -S networkmanager net-tools --noconfirm
 	systemctl enable NetworkManager
 clear
 
 echo "Connection Manager"
-	pacman -S network-manager-applet
+	pacman -S network-manager-applet --noconfirm
 clear
 
 # Using notebook #
 echo "Packages for latptop waiting.."
 	if (($note == 1))
 		then
-			pacman -S xf86-input-synaptics
+			pacman -S xf86-input-synaptics --noconfirm
 			clear
 		else
 			clear
@@ -116,16 +126,16 @@ echo "Packages for latptop waiting.."
 echo "Graphic setup waiting.."
 	if (($cardboard == 0))
 		then
-			pacman -S xf86-video-amdgpu
+			pacman -S xf86-video-amdgpu --noconfirm
 				elif (($cardboard == 1))
 				then
-					pacman -S xf86-video-intel
+					pacman -S xf86-video-intel --noconfirm
 				elif (($cardboard == 2))
 				then
-					pacman -S xf86-video-nouveau
+					pacman -S xf86-video-nouveau --noconfirm
 				elif (($cardboard == 3))
 				then	
-					pacman -S xf86-video-fbdev virtualbox-guest-utils virtualbox-guest-modules-arch
+					pacman -S xf86-video-fbdev virtualbox-guest-utils virtualbox-guest-modules-arch --noconfirm
 				else
 					echo "Error"
 		sleep 3
@@ -135,12 +145,12 @@ clear
 # Xorg #
 echo "Xorg install waiting.."
 	sleep 1
-	pacman -S xorg-server xorg-xinit xorg-apps gvfs-mtp sshfs
+	pacman -S xorg-server xorg-xinit xorg-apps gvfs-mtp sshfs --noconfirm
 clear
 
 # Audio #
 echo "Config audio waiting.."
-	pacman -S pavucontrol alsa-firmware alsa-utils alsa-plugins pulseaudio-alsa pulseaudio
+	pacman -S pavucontrol alsa-firmware alsa-utils alsa-plugins pulseaudio-alsa pulseaudio --noconfirm
 clear
 
 # Keyboard #
@@ -151,16 +161,16 @@ echo "Keyboard to BR-ABNT2"
 echo "Graphical ambient setup waiting.."
 	if (($grabient == 0)) #GNOME
 		then
-			pacman -S gnome gnome-extra
+			pacman -S gnome gnome-extra --noconfirm
 				elif (($grabient == 1)) #XFCE4 <3
 				then	
-					pacman -S xfce4 xfce4-goodies
+					pacman -S xfce4 xfce4-goodies --noconfirm
 				elif (($grabient == 2)) #KDE
 				then	
-					pacman -S plasma
+					pacman -S plasma --noconfirm
 				elif (($grabient == 3)) #MATE
 				then	
-					pacman -S mate mate-extra
+					pacman -S mate mate-extra --noconfirm
 		else
 			echo "Error"
 			sleep 3
@@ -171,20 +181,20 @@ clear
 echo "Display manager setup waiting..."
 if (($disp == 0)) #GDM
 	then
-		pacman -S gdm
+		pacman -S gdm --noconfirm
 		systemctl enable gdm
 			elif (($disp == 1)) #LIGHTDM
 			then	
-				pacman -S lightdm lightdm-gtk-greeter
-				pacman -S light-gtk-greeter-settings
+				pacman -S lightdm lightdm-gtk-greeter --noconfirm
+				pacman -S light-gtk-greeter-settings --noconfirm
 				systemctl enable lightdm
 			elif (($disp == 2)) #SDDM
 			then
-				pacman -S sddm
+				pacman -S sddm --noconfirm
 				systemctl enable sddm
 			elif (($disp == 3)) #LXDM
 			then
-				pacman -S lxdm
+				pacman -S lxdm --noconfirm
 				systemctl enable lxdm
 	else
 		echo "Error!"
