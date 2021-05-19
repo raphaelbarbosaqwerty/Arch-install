@@ -16,9 +16,10 @@ echo "Starting with the installationg becareful with all commands you choose..."
 
 echo "Config Hostname and hosts"
 
-echo "Hostname?"
+#echo "Hostname?"
 	read hostname
-echo "Hosts?
+
+echo "Hosts?"
 	read hosts
 
 echo "Config settings for your computer?"
